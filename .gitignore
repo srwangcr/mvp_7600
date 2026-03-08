@@ -1,0 +1,61 @@
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Archivos subidos por usuarios
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+logs/
+*.log
+backend/logs/*
+!backend/logs/.gitkeep
+
+# Build
+frontend/build/
+frontend/dist/
+backend/dist/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+coverage/
+.nyc_output/
+
+# Docker
+.dockerignore
+
+# Base de datos local
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups
+backups/
+*.sql.backup
+*.sql.gz
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# PM2
+.pm2/
+pm2.log

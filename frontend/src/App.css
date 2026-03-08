@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* Leaflet map container */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Estilos personalizados */
+.hero-section {
+  background: linear-gradient(135deg, #002B7F 0%, #0D47A1 100%);
+  color: white;
+  padding: 60px 0;
+}
+
+.caso-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.caso-card:hover {
+  transform: translateY(-4px);
+}
+
+.urgencia-alta {
+  border-left: 4px solid #f44336;
+}
+
+.urgencia-media {
+  border-left: 4px solid #ff9800;
+}
+
+.urgencia-baja {
+  border-left: 4px solid #4caf50;
+}
