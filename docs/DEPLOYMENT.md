@@ -82,8 +82,8 @@ DB_PASSWORD=TU_PASSWORD_SEGURO_AQUI
 JWT_SECRET=TU_SECRET_JWT_AQUI
 
 # Email (Gmail SMTP)
-SMTP_USER=tu-email@gmail.com
-SMTP_PASS=tu-app-password-de-16-caracteres
+GMAIL_USER=tu-email@gmail.com
+GMAIL_APP_PASSWORD=tu-app-password-de-16-caracteres
 
 # Frontend
 REACT_APP_API_URL=https://ayudatica.srwangcr.tech/api
@@ -111,7 +111,7 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
    - Selecciona "Other" como dispositivo
    - Nombra: "Ayuda Tica Server"
 4. Copia el password de 16 caracteres generado
-5. Pégalo en `.env` como `SMTP_PASS`
+5. Pégalo en `.env` como `GMAIL_APP_PASSWORD`
 
 ## 5. Configurar Cloudflare Tunnel
 

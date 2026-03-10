@@ -1,16 +1,25 @@
 const nodemailer = require('nodemailer');
 const logger = require('./logger');
 
+const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+const gmailAppPassword = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
+const fromName = process.env.GMAIL_FROM_NAME || process.env.SMTP_FROM_NAME || 'Ayuda Tica';
+const fromEmail = process.env.GMAIL_FROM_EMAIL || process.env.SMTP_FROM_EMAIL || gmailUser;
+
 // Configuración del transportador de email
 const transporter = nodemailer.createTransporter({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT) || 587,
-  secure: process.env.SMTP_SECURE === 'true', // true para 465, false para otros puertos
+  port: parseInt(process.env.SMTP_PORT, 10) || 587,
+  secure: process.env.SMTP_SECURE === 'true', // true para 465, false para 587 (STARTTLS)
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
+    user: gmailUser,
+    pass: gmailAppPassword
   }
 });
+
+if (!gmailUser || !gmailAppPassword) {
+  logger.warn('Credenciales de Gmail SMTP incompletas. Configura GMAIL_USER y GMAIL_APP_PASSWORD.');
+}
 
 // Verificar configuración de email al iniciar
 transporter.verify(function (error, success) {
@@ -33,7 +42,7 @@ transporter.verify(function (error, success) {
 const sendEmail = async ({ to, subject, text, html }) => {
   try {
     const mailOptions = {
-      from: `${process.env.SMTP_FROM_NAME} <${process.env.SMTP_FROM_EMAIL}>`,
+      from: `${fromName} <${fromEmail}>`,
       to,
       subject,
       text,

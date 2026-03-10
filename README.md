@@ -195,9 +195,13 @@ npm test
 2. Habilitar "App Passwords" en configuración de Google
 3. Agregar credenciales en `.env`:
    ```
-   SMTP_USER=tu-email@gmail.com
-   SMTP_PASS=tu-app-password
+    GMAIL_USER=tu-email@gmail.com
+    GMAIL_APP_PASSWORD=tu-app-password
    ```
+
+Notas:
+- También se mantienen `SMTP_USER` y `SMTP_PASS` por compatibilidad.
+- Si no defines `GMAIL_FROM_EMAIL`, se usará el mismo `GMAIL_USER`.
 
 ## 🗺️ Mapas
 
