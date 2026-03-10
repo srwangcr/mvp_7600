@@ -4,8 +4,15 @@ const isLocalhost =
   typeof window !== 'undefined' &&
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
-// In production, prefer same-origin /api (proxied by nginx) if REACT_APP_API_URL is not provided.
-const API_URL = process.env.REACT_APP_API_URL || (isLocalhost ? 'http://localhost:5000/api' : '/api');
+const envApiUrl = process.env.REACT_APP_API_URL;
+const envPointsToLocalhost =
+  typeof envApiUrl === 'string' &&
+  (envApiUrl.includes('localhost') || envApiUrl.includes('127.0.0.1'));
+
+// If frontend runs on a remote host, never use localhost even if env var is misconfigured.
+const API_URL = !isLocalhost && envPointsToLocalhost
+  ? '/api'
+  : (envApiUrl || (isLocalhost ? 'http://localhost:5000/api' : '/api'));
 
 const api = axios.create({
   baseURL: API_URL,
