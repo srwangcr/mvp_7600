@@ -1,13 +1,17 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
 # Copiar archivos de dependencias
 COPY package*.json ./
 
-# Instalar dependencias
-RUN npm ci
+# Instalar dependencias (usa lockfile si existe)
+RUN if [ -f package-lock.json ]; then \
+        npm ci; \
+    else \
+        npm install; \
+    fi
 
 # Copiar código fuente
 COPY . .
