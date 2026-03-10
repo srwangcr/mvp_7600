@@ -7,7 +7,7 @@ const fromName = process.env.GMAIL_FROM_NAME || process.env.SMTP_FROM_NAME || 'A
 const fromEmail = process.env.GMAIL_FROM_EMAIL || process.env.SMTP_FROM_EMAIL || gmailUser;
 
 // Configuración del transportador de email
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT, 10) || 587,
   secure: process.env.SMTP_SECURE === 'true', // true para 465, false para 587 (STARTTLS)
