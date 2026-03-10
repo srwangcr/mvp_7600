@@ -15,7 +15,12 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci --only=production
+# Usa npm ci cuando existe package-lock.json; de lo contrario usa npm install.
+RUN if [ -f package-lock.json ]; then \
+            npm ci --omit=dev; \
+        else \
+            npm install --omit=dev; \
+        fi
 
 # Copiar código fuente
 COPY . .
